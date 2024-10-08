@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>繳費查詢系統</title>
+    <title>應用英語科學會會費繳費查詢系統</title>
     <style>
         body { 
             font-family: Arial, sans-serif; 
-            background-color: #f4f4f4; 
+            background-color: #f0f0f0; /* 灰色背景 */
             color: #333; 
             margin: 0; 
             padding: 20px; 
         }
         h1 { 
-            color: #007BFF; 
+            color: #388e3c; /* 深綠色標題 */
             text-align: center; 
             margin-bottom: 30px; 
         }
@@ -34,14 +34,14 @@
             width: 100%; 
             padding: 10px; 
             margin-bottom: 15px; 
-            border: 1px solid #ccc; 
+            border: 1px solid #c8e6c9; /* 淺綠色邊框 */
             border-radius: 4px; 
             box-sizing: border-box; 
         }
         button { 
             width: 100%; 
             padding: 10px; 
-            background-color: #007BFF; 
+            background-color: #388e3c; /* 深綠色按鈕 */
             color: #fff; 
             border: none; 
             border-radius: 4px; 
@@ -49,7 +49,7 @@
             font-size: 16px; 
         }
         button:hover { 
-            background-color: #0056b3; 
+            background-color: #2e7d32; /* 更深綠色懸停效果 */
         }
         .result-container { 
             display: flex; 
@@ -84,7 +84,7 @@
             text-align: center; 
             margin-top: 10px; 
             font-size: 16px; 
-            color: #007BFF; 
+            color: #388e3c; /* 深綠色 */
         }
         footer {
             text-align: center;
@@ -93,7 +93,7 @@
         }
         .social-links a {
             margin: 0 10px;
-            color: #007BFF;
+            color: #388e3c; /* 深綠色 */
             text-decoration: none;
         }
         .social-links a:hover {
@@ -102,7 +102,7 @@
     </style>
 </head>
 <body>
-    <h1>繳費查詢系統</h1>
+    <h1>應用英語科學會會費繳費查詢系統</h1>
     <form id="queryForm">
         <label for="studentId">請輸入學號：</label>
         <input type="text" id="studentId" name="studentId" placeholder="請輸入您的學號" required>
@@ -113,13 +113,13 @@
     <div id="resultContainer" class="result-container"></div>
 
     <footer>
-        <p>Copyright © 2023 樹人醫專應用英語科學會</p>
         <div class="social-links">
             <a href="#" target="_blank">Facebook</a>
             <a href="#" target="_blank">Instagram</a>
             <a href="#" target="_blank">Twitter</a>
             <a href="#" target="_blank">LinkedIn</a>
         </div>
+        <p>Copyright © 2024 樹人醫專應用英語科學會 - Web Design by William Huang</p>
     </footer>
 
     <script>
@@ -143,11 +143,18 @@
 
                 const paymentBox = document.createElement('div');
                 paymentBox.className = 'box';
-                paymentBox.innerHTML = `
-                    <div class="title">收據編號：</div><div class="value ${result.receiptNumber === "未設定" ? "value-red" : ""}">${result.receiptNumber}</div><br>
-                    <div class="title">經手人：</div><div class="value ${result.handler === "未設定" ? "value-red" : ""}">${result.handler}</div><br>
-                    <div class="title">繳費狀態：</div><div class="value ${result.paymentStatus === "未設定" ? "value-red" : ""}">${result.paymentStatus}</div>
-                `;
+                
+                if (result.receiptNumber === "未設定" && result.handler === "未設定") {
+                    paymentBox.innerHTML = `
+                        <div class="title">繳費狀態：</div><div class="value value-red">${result.paymentStatus}</div>
+                    `;
+                } else {
+                    paymentBox.innerHTML = `
+                        <div class="title">收據編號：</div><div class="value">${result.receiptNumber}</div><br>
+                        <div class="title">承辦人員：</div><div class="value">${result.handler}</div><br>
+                        <div class="title">繳費狀態：</div><div class="value">${result.paymentStatus}</div>
+                    `;
+                }
                 document.getElementById("resultContainer").appendChild(paymentBox);
             } else {
                 // 如果找不到資料
