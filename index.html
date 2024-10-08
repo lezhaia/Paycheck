@@ -30,13 +30,14 @@
             margin-bottom: 8px; 
             font-weight: bold; 
         }
-        input[type="text"] { 
+        input[type="number"] { 
             width: 100%; 
             padding: 10px; 
             margin-bottom: 15px; 
             border: 1px solid #c8e6c9; /* 淺綠色邊框 */
             border-radius: 4px; 
             box-sizing: border-box; 
+            font-size: 16px; /* 文字大小 */
         }
         button { 
             width: 100%; 
@@ -105,7 +106,7 @@
     <h1>應用英語科學會會費繳費查詢系統</h1>
     <form id="queryForm">
         <label for="studentId">請輸入學號：</label>
-        <input type="tel" id="studentId" name="studentId" placeholder="請輸入您的學號" pattern="[0-9]*" inputmode="numeric" min="0" required>
+        <input type="number" id="studentId" name="studentId" placeholder="請輸入您的學號" min="0" required>
         <button type="submit">查詢</button>
         <div id="loader" class="loader">查詢中...</div>
     </form>
